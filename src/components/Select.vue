@@ -291,7 +291,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </span>
-	    </div>
+      </div>
       
       <div style="overflow: hidden;">
         <input
