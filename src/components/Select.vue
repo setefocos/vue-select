@@ -4,11 +4,6 @@
     font-family: sans-serif;
   }
 
-  .v-select .disabled {
-    cursor: not-allowed !important;
-    background-color: rgb(248, 248, 248) !important;
-  }
-
   .v-select,
   .v-select * {
     -webkit-box-sizing: border-box;
@@ -246,6 +241,16 @@
     width: 5em;
     height: 5em;
   }
+
+  /* Disabled state */
+  .v-select.disabled .dropdown-toggle,
+  .v-select.disabled .dropdown-toggle input,
+  .v-select.disabled .selected-tag .close,
+  .v-select.disabled .open-indicator {
+    cursor: not-allowed;
+    background-color: rgb(248, 248, 248);
+  }
+
   /* Loading Spinner States */
   .v-select.loading .spinner {
     opacity: 1;
@@ -280,7 +285,7 @@
 
 <template>
   <div :dir="dir" class="dropdown v-select" :class="dropdownClasses">
-    <div ref="toggle" @mousedown.prevent="toggleDropdown" :class="['dropdown-toggle', 'clearfix', {'disabled': disabled}]">
+    <div ref="toggle" @mousedown.prevent="toggleDropdown" :class="['dropdown-toggle', 'clearfix']">
 
       <div style="float:left;" @click="$refs.search.focus()">
         <span class="selected-tag" v-for="option in valueAsArray" v-bind:key="option.index">
@@ -841,7 +846,8 @@
           searchable: this.searchable,
           unsearchable: !this.searchable,
           loading: this.mutableLoading,
-          rtl: this.dir === 'rtl'
+          rtl: this.dir === 'rtl',
+          disabled: this.disabled
         }
       },
 
