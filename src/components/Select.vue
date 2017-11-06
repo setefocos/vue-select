@@ -292,7 +292,7 @@
           <slot name="selected-option" v-bind="option">
             {{ getOptionLabel(option) }}
           </slot>
-          <button v-if="multiple" @click="deselect(option)" type="button" class="close" aria-label="Remove option">
+          <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="close" aria-label="Remove option">
             <span aria-hidden="true">&times;</span>
           </button>
         </span>
@@ -310,7 +310,8 @@
                 @blur="onSearchBlur"
                 @focus="onSearchFocus"
                 type="search"
-                :class="[{'disabled': disabled}, 'form-control']"
+                class="form-control"
+		:disabled="disabled"
                 :placeholder="searchPlaceholder"
                 :readonly="!searchable"
                 :style="{ width: isValueEmpty ? '100%' : '' }"
@@ -319,7 +320,7 @@
         >
       </div>
       
-      <i v-if="!noDrop" ref="openIndicator" role="presentation" :class="[{'disabled': disabled}, 'open-indicator']"></i>
+      <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
 
       <slot name="spinner">
         <div class="spinner" v-show="mutableLoading">Loading...</div>
